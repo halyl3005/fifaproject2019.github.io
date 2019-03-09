@@ -2,7 +2,6 @@
 
 
 
-
 const STAR_COUNT = ( window.innerWidth + window.innerHeight ) / 8,
       STAR_SIZE = 3,
       STAR_MIN_SCALE = 0.2,
@@ -243,3 +242,76 @@ $("#gallery").fadeTo(300, 1);
 }, 300);
 });
 });
+
+
+
+
+
+
+
+$('.carousel.carousel-multi-item.v-2 .carousel-item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+
+  for (var i=0;i<3;i++) {
+    next=next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+
+// Gets the video src from the data-src on each button
+var $imageSrc;  
+$('.gallery img').click(function() {
+    $imageSrc = $(this).data('bigimage');
+});
+console.log($imageSrc);
+  
+  
+  
+// when the modal is opened autoplay it  
+$('#myModal').on('shown.bs.modal', function (e) {
+    
+// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+
+$("#image").attr('src', $imageSrc  ); 
+})
+  
+  
+// reset the modal image
+$('#myModal').on('hide.bs.modal', function (e) {
+    // a poor man's stop video
+    $("#image").attr('src',''); 
+}) 
+    
+    
+
+
+  
+  
+// document ready  
+});
+
+
+
+
+
+
+
+
